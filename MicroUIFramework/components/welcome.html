@@ -1,0 +1,28 @@
+
+<script type="text/javascript">
+	Vue.component('welcome',{
+		template: `
+		<div class='card' v-bind:hidden="hidden">
+		<div class="well">
+			{{message}}
+		</div>
+		</div>
+		`,
+		data: () => {
+			return {
+				hidden:true,
+				message:""
+			}
+		},
+		created: function () {
+			console.log("register");
+			this.$parent.$on("login_event", () => {
+				this.message="Welcome " + this.$store.getters.loggedInUser.user.name ;
+				this.hidden=false;
+			});
+			this.$parent.$on("logout_event", () => {
+				this.hidden=true;
+			});
+		}
+	});
+</script>

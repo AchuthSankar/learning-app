@@ -1,0 +1,23 @@
+
+<script type="text/javascript">
+	Vue.component('component1',{
+		template: `
+		<div class="well">
+			<input type="text" v-model="name"></input>
+			<button type="button" v-on:click="login()">Login</button>
+			<button type="button" v-on:click="logout()">Logout</button>
+		</div>
+		`,
+		data: ()=> ({
+			name: ""
+		}),
+		methods: {
+			login: function() {
+				this.$store.commit("login", {"name":this.name});
+			},
+			logout: function() {
+				this.$store.commit("logout", {"name":this.name});
+			}
+		}
+	});
+</script>

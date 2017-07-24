@@ -1,0 +1,14 @@
+
+<script type="text/javascript">
+	Vue.component('component3',{
+		template: `
+		<div>
+			<label>{{message}}</label>
+		</div>
+		`,
+		created: function () {
+			console.log(this.$store)
+		},
+		props: ["message"]
+	});
+</script>

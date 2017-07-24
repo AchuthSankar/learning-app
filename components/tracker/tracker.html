@@ -1,0 +1,31 @@
+<link rel="import" href="./component3.html">
+<script type="text/javascript">
+	Vue.component('tracker',{
+		template: `
+		<div class='card'>
+		<component3 v-bind:style="style" v-bind:message="message"></component3>
+		</div>
+		`,
+		methods: {
+			update: function($event) {
+				console.log($event);
+			}
+		},
+		data: () => ({
+				style: "color:red;",
+				message:"Please log in."
+			}
+		),
+		created: function () {
+			console.log("register");
+			this.$parent.$on("login_event", () => {
+				this.message=this.$store.getters.loggedInUser.user.name +" logged in at " + new Date();
+				this.style="color:green;"
+			});
+			this.$parent.$on("logout_event", () => {
+				this.message=this.$store.getters.loggedInUser.user.name +" logged out at " + new Date();
+				this.style="color:red;"
+			});
+		}
+	});
+</script>

@@ -1,0 +1,9 @@
+{
+	"components": [
+		"login",
+		"weather",
+		"component2",
+		"todo",
+		"component4"
+	]
+}
