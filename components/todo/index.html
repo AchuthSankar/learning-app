@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Component</title>
+	script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/vuex@2.0.0"></script>
+</head>
+<body>
+<div id="main">
+<todo></todo>
+</div>
+<link rel="import" href="todo.html"></script>
+<script type="text/javascript">
+	const store = new Vuex.Store({
+	  state: {
+	    isLoggedIn: {}
+	  },
+	  mutations: {
+	    login (state, user) {
+	      state.isLoggedIn={"logged":"true", "user":user}
+	      main.$emit("login_event");
+	    },
+	    logout (state, user) {
+	      state.isLoggedIn={"logged":"false", "user":user}
+	      main.$emit("logout_event");
+	    }
+	  },
+	  getters: {
+	    loggedInUser: state => {
+	      return state.isLoggedIn;
+	    }
+	  }
+	})
+	var main = new Vue({
+	  store,
+	  el: '#main'
+	});
+	store.commit("login", {"name":"Achu"});
+</script>
+</body>
+</html>
