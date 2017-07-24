@@ -1,5 +1,5 @@
 FROM node
-workdir /opt
-copy * .
+WORKDIR /opt
+COPY * ./
 RUN npm install
 CMD npm start

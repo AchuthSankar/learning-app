@@ -44,8 +44,10 @@
 		    }
 		});
 		var main=new Vue({
-           el: "#main"
+			store,
+        	el: "#main"
 		});
+		store.commit("login", {name:"Anonymous"});
 	</script>
 </body>
 </html>

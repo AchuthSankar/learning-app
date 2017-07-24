@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard</title>
+	<title>Component</title>
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -10,14 +10,36 @@
 	<script src="https://unpkg.com/vuex@2.0.0"></script>
 </head>
 <body>
-	<div id="main">
-		<!-- <div class="container-fluid">
-			<div class="row">
-			</div>
-		</div> -->
-		<div class="card-columns"></div>
-	</div>
-	<script src="loader.js"></script>
-	<script src="main.js"></script>
+<div id="main" style="max-height: 450px; max-width: 450px;">
+<snake></snake>
+</div>
+<link rel="import" href="./snake.html"></script>
+<script type="text/javascript">
+	const store = new Vuex.Store({
+	  state: {
+	    isLoggedIn: {}
+	  },
+	  mutations: {
+	    login (state, user) {
+	      state.isLoggedIn={"logged":"true", "user":user}
+	      main.$emit("login_event");
+	    },
+	    logout (state, user) {
+	      state.isLoggedIn={"logged":"false", "user":user}
+	      main.$emit("logout_event");
+	    }
+	  },
+	  getters: {
+	    loggedInUser: state => {
+	      return state.isLoggedIn;
+	    }
+	  }
+	})
+	var main = new Vue({
+	  store,
+	  el: '#main'
+	});
+	store.commit("login", {"name":"Achu"});
+</script>
 </body>
 </html>

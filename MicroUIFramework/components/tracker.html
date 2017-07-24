@@ -1,9 +1,9 @@
-<link rel="import" href="./component3.html">
+<link rel="import" href="./tracker-child.html">
 <script type="text/javascript">
 	Vue.component('tracker',{
 		template: `
 		<div class='card'>
-		<component3 v-bind:style="style" v-bind:message="message"></component3>
+		<tracker-child v-bind:style="style" v-bind:message="message"></tracker-child>
 		</div>
 		`,
 		methods: {

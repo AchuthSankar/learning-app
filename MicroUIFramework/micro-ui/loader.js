@@ -46,15 +46,31 @@ function addElementAsRow($component) {
 
 function addElementAsCard($component) {
 	$container=$("#main > .card-columns");
+	//$card=$("<div class='card'></div>");
+	//$card.append($component);
+	//$container.append($card);
 	$container.append($component);
 }
 
+function addMenuItem($component) {
+	$li=$("<li class='nav-item'></li>");
+	$link=$("<a class='nav-link' href='#'><span class='sr-only'>(current)</span></a>");
+	$link.append($component);
+	$li.append($link);
+	$("#main > .navbar > .collapse > .navbar-nav").append($li);
+}
+
 function addComponents(components) {
-	components.forEach((component)=>{
-		console.log(component);
-		$link=$("<link/>").attr({rel:"import",href:"http://localhost:3000/components/"+component+".html"});
+	components.forEach((componentDetail)=>{
+		console.log(componentDetail);
+		component=componentDetail.name;
+		$link=$("<link/>").attr({ rel: "import", href: "/" + component + "/" + component + ".html" });
 		$("body").append($link);
 		$component=$("<"+component+"/>");
-		addElementAsCard($component);
+		if(componentDetail.menu==="true") {
+			addMenuItem($component);
+		} else {
+			addElementAsCard($component);
+		}
 	})
 };

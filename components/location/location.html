@@ -18,7 +18,7 @@
 			}
 		},
 		methods: {
-			change() {
+			change: function() {
 				console.log(this.location);
 				this.$store.commit("changeLocation",this.location);
 			}
