@@ -1,0 +1,35 @@
+<script type="text/javascript">
+	Vue.component("location", {
+		template: `
+			<div v-bind:hidden="hidden">
+			<label for="location">Location</label>
+			<select name="location" v-model="location" v-on:change="change()">
+				<option value="Bangalore">Bangalore</option>
+				<option value="Kochi">Kochi</option>
+				<option value="Delhi">Delhi</option>
+				<option value="Hyderabad">Hyderabad</option>
+			</select>
+			</div>
+		`,
+		data: () => {
+			return {
+				location: "Bangalore",
+				hidden: true
+			}
+		},
+		methods: {
+			change() {
+				console.log(this.location);
+				this.$store.commit("changeLocation",this.location);
+			}
+		},
+		created: function(){
+			this.$parent.$on("login_event", () => {
+				this.hidden=false;
+			});
+			this.$parent.$on("logout_event", () => {
+				this.hidden=true;
+			});
+		}
+	})
+</script>

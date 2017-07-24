@@ -10,36 +10,42 @@
 	<script src="https://unpkg.com/vuex@2.0.0"></script>
 </head>
 <body>
-<div id="main">
-<tracker></tracker>
-</div>
-<link rel="import" href="./tracker.html"></script>
-<script type="text/javascript">
-	const store = new Vuex.Store({
-	  state: {
-	    isLoggedIn: {}
-	  },
-	  mutations: {
-	    login (state, user) {
-	      state.isLoggedIn={"logged":"true", "user":user}
-	      main.$emit("login_event");
-	    },
-	    logout (state, user) {
-	      state.isLoggedIn={"logged":"false", "user":user}
-	      main.$emit("logout_event");
-	    }
-	  },
-	  getters: {
-	    loggedInUser: state => {
-	      return state.isLoggedIn;
-	    }
-	  }
-	})
-	var main = new Vue({
-	  store,
-	  el: '#main'
-	});
-	store.commit("login", {"name":"Achu"});
-</script>
+	<div id="main">
+	<location></location>
+	</div>
+	<link rel="import" href="location.html">
+	<script type="text/javascript">
+		var store=new Vuex.Store({
+		    state: {
+		       isLoggedIn: {},
+		       location: ""
+		    },
+		    mutations: {
+		      login (state, user) {
+		         state.isLoggedIn={"logged":"true", "user":user}
+		         main.$emit("login_event");
+		      },
+		      logout (state, user) {
+		         state.isLoggedIn={"logged":"false", "user":user}
+		         main.$emit("logout_event");
+		      },
+		      changeLocation(state, location) {
+		           state.location=location;
+		           main.$emit("location_change_event");
+		      }
+		    },
+		    getters: {
+		      loggedInUser: state => {
+		        return state.isLoggedIn;
+		      },
+		      getLocation: state => {
+		        return state.location;
+		      }
+		    }
+		});
+		var main=new Vue({
+           el: "#main"
+		});
+	</script>
 </body>
 </html>
